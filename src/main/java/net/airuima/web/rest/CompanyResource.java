@@ -62,5 +62,8 @@ public class CompanyResource extends ProtectBaseResource<Company> {
     public String change02() {
         return "This is the change02.";
     }
+    public String change01() {
+        return "This is the change01.";
+    }
 
 }
