@@ -55,5 +55,8 @@ public class CompanyResource extends ProtectBaseResource<Company> {
     public String sayHello() {
         return "hello world";
     }
+    public String getAge() {
+        return "My age is 24.";
+    }
 
 }
