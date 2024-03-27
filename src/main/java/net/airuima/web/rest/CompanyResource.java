@@ -52,4 +52,8 @@ public class CompanyResource extends ProtectBaseResource<Company> {
         return "";
     }
 
+    public String sayHello() {
+        return "hello world";
+    }
+
 }
