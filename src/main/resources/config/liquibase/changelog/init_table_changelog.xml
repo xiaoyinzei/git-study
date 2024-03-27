@@ -1,0 +1,62 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet author="ruima (generated)" id="20240319010508">
+        <createTable tableName="company" remarks="公司信息">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" remarks="公司名称" type="varchar(32)"/>
+            <column name="address" remarks="公司地址" type="varchar(128)"/>
+            <column defaultValueNumeric="0" name="deleted" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" remarks="新建人" type="varchar(50)"/>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_date" remarks="新建时间" type="timestamp"/>
+            <column name="last_modified_by" remarks="最新修改人" type="VARCHAR(50)"/>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="last_modified_date" remarks="最新修改时间" type="timestamp"/>
+            <column name="custom1" remarks="定制字段" type="varchar(255)"/>
+            <column name="custom2" remarks="定制字段" type="varchar(255)"/>
+            <column name="custom3" remarks="定制字段" type="varchar(255)"/>
+            <column name="custom4" remarks="定制字段" type="varchar(255)"/>
+            <column name="custom5" remarks="定制字段" type="varchar(255)"/>
+        </createTable>
+        <createTable tableName="employee" remarks="职工信息">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="work_no" remarks="工号" type="varchar(32)"/>
+            <column name="name" remarks="姓名" type="varchar(32)"/>
+            <column name="role" remarks="角色(0-开发人员；1-管理员；2-普通用户)" type="tinyint(4)"/>
+            <column name="age" remarks="年龄" type="int(11)"/>
+            <column name="work_line_code" remarks="负责产线，产线编码" type="varchar(255)"/>
+            <column name="entry_ime" remarks="入职时间" type="date"/>
+            <column name="attendance_rate" remarks="出勤率" type="decimal(6,4)"/>
+            <column name="slogan" remarks="标语" type="text"/>
+            <column name="is_active" remarks="是否在职" type="tinyint(4)"/>
+            <column name="company_id" remarks="公司id" type="bigint(20)"/>
+            <column defaultValueNumeric="0" name="deleted" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" remarks="新建人" type="varchar(50)"/>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_date" remarks="新建时间" type="timestamp"/>
+            <column name="last_modified_by" remarks="最新修改人" type="VARCHAR(50)"/>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="last_modified_date" remarks="最新修改时间" type="timestamp"/>
+            <column name="custom1" remarks="定制字段" type="varchar(255)"/>
+            <column name="custom2" remarks="定制字段" type="varchar(255)"/>
+            <column name="custom3" remarks="定制字段" type="varchar(255)"/>
+            <column name="custom4" remarks="定制字段" type="varchar(255)"/>
+            <column name="custom5" remarks="定制字段" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="ruima (generated)" id="20240319010508-unique-index">
+    </changeSet>
+
+    <changeSet author="ruima (generated)" id="20240319010508-index">
+    </changeSet>
+
+</databaseChangeLog>

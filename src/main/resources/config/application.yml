@@ -1,0 +1,59 @@
+
+management:
+  endpoints:
+    web:
+      base-path: /management
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+spring:
+  application:
+    name: demo_mes
+  profiles:
+    active: dev
+  cloud:
+    consul:
+      discovery:
+        healthCheckPath: /management/health
+        instanceId: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate.jdbc.time_zone: Asia/Shanghai
+    hibernate:
+      ddl-auto: none
+
+server:
+  servlet:
+    session:
+      cookie:
+        http-only: true
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain,application/javascript,text/css,text/javascript,image/jpeg
+    min-response-size: 2038
+
+info:
+  display-ribbon-on-profiles: ${spring.profiles.active}
+  version: 0.0.1-SNAPSHOT
+  name: demo_mes
+
+jasypt:
+  encryptor:
+    algorithm: PBEWithMD5AndDES
+    iv-generator-classname: org.jasypt.iv.NoIvGenerator
+    password: c8fc301a-ae2b-46a8-891f-e2f87dc0211b
+    property:
+      prefix: Ruima@(
+      suffix: )
+
+ruima:
+  security:
+    jwt:
+      base64-secret: ZGUxNTNlZjU3YTg3M2ZhN2Y2NmFjMTg0Y2FjMzBhNDAxNDdjNTU1YTEwMjNjNjFjNmJjYWQxYjkzYmRhODhiZTgxNTc0MmE3MDNmMWMwNmU4YjI4N2NhYmExYjllZGMyMjRjOTY0NDk1ZWZjNGVhMGVlMWM4YWY4YmU1YWM0YmYxYjE1ODY2ZjJhZDg5YmNjM2I2NWI4MTNiMjM3ZTYwMA==
+      token-validity-in-seconds: 2592000
+#租户
+tenant: ${TENANT:false}

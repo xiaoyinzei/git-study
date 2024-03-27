@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: demo_mes
+  profiles:
+    active: prod
+  cloud:
+    consul:
+      discovery:
+        tags:
+          - profile=${spring.profiles.active}
+          - version=${info.version}
+          - git-version=${git.commit.id.describe:}
+          - git-commit=${git.commit.id.abbrev:}
+          - git-branch=${git.branch:}
+      host: localhost
+      port: 8500

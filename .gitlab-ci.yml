@@ -1,0 +1,35 @@
+cache:
+  key: "$CI_COMMIT_REF_NAME"
+
+stages:
+  - test
+  - analyze
+
+variables:
+  SONAR_URL: http://47.111.245.251:4000
+  SONAR_TOKEN: e2f2853ba6c35d35a0d93b0bbb4cc0579975d86b
+
+maven-test:
+  stage: test
+  script:
+    - mvn test
+    - cat target/test-results/coverage/jacoco/index.html | grep -o 'Total[^%]*%'
+  artifacts:
+    reports:
+      junit: target/surefire-reports/TEST-*.xml
+    paths:
+      - target/test-results
+    expire_in: 1 day
+  tags:
+    - jdk17
+
+sonar-analyze:
+  stage: analyze
+  dependencies:
+    - maven-test
+  script:
+    - mvn compile
+    - mvn org.jacoco:jacoco-maven-plugin:prepare-agent sonar:sonar -Dsonar.host.url=$SONAR_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.gitlab.failure_notification_mode=exit-mode -Dsonar.gitlab.user_token=Hs44uGY5vEJhVp9u_Wpo -Dsonar.gitlab.project_id=$CI_PROJECT_ID -Dsonar.gitlab.commit_sha=$CI_COMMIT_SHA -Dsonar.gitlab.ref_name=$CI_COMMIT_REF_NAME
+  allow_failure: true
+  tags:
+    - jdk17

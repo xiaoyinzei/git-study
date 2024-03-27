@@ -1,0 +1,62 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="ruima (generated)" id="1609915667276-1">
+        <createTable tableName="meta_column">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" remarks="字段名称" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="language_key" remarks="字段国际化" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="true" name="display" remarks="是否需要显示(0:不显示;1:显示)" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="true" name="can_update" remarks="是否可更新修改" type="BIT(1)"/>
+            <column name="widget" remarks="前端组件" type="VARCHAR(255)"/>
+            <column name="widget_data" remarks="前端组件数据" type="LONGTEXT"/>
+            <column name="column_validate" remarks="前端字段验证" type="VARCHAR(255)"/>
+            <column defaultValueBoolean="true" name="function_display" remarks="是否功能性显示(0:不显示;1:显示)" type="BIT(1)"/>
+            <column defaultValueNumeric="0" name="table_order" remarks="表格展示顺序" type="INT"/>
+            <column defaultValueNumeric="0" name="form_order" remarks="表单展示顺序" type="INT"/>
+            <column name="description" remarks="字段描述" type="VARCHAR(255)"/>
+            <column name="table_id" remarks="元数据表id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="query_data" remarks="查询数据" type="LONGTEXT"/>
+            <column defaultValueNumeric="0" name="deleted" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="SYSTEM" name="created_by" type="VARCHAR(50)"/>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_date" type="TIMESTAMP"/>
+            <column defaultValue="SYSTEM" name="last_modified_by" type="VARCHAR(50)"/>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="last_modified_date" type="TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="ruima (generated)" id="1609915667276-2">
+        <createTable tableName="meta_table">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" remarks="表名" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="C|U|D|MD|EX|EI" name="operation" remarks="操作标志" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueNumeric="0" name="token" remarks="版本修改识别号" type="BIGINT"/>
+            <column defaultValueNumeric="0" name="deleted" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValue="SYSTEM" name="created_by" type="VARCHAR(50)"/>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="created_date" type="TIMESTAMP"/>
+            <column defaultValue="SYSTEM" name="last_modified_by" type="VARCHAR(50)"/>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="last_modified_date" type="TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="ruima (generated)" id="1609915667276-3">
+        <addUniqueConstraint columnNames="name, deleted" constraintName="meta_table_name_deleted_unique" tableName="meta_table"/>
+    </changeSet>
+</databaseChangeLog>
