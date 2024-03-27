@@ -59,5 +59,8 @@ public class CompanyResource extends ProtectBaseResource<Company> {
     public String getName() {
         return "My name is huang.";
     }
+    public String change02() {
+        return "This is the change02.";
+    }
 
 }
